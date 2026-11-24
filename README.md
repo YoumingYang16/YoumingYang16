@@ -1,7 +1,7 @@
 <p align="center">
-  <a href="https://cdn.jsdelivr.net/gh/YoumingYang16/YoumingYang16@main/media/welcome.mp4"><img src="./media/welcome.webp" width="100%" alt="Six friends celebrate at sunset. The camera moves in as Youming waves and says, Welcome to my homepage." /></a>
+  <a href="https://youmingyang16.github.io/YoumingYang16/media/welcome.mp4"><img src="./media/welcome.webp" width="100%" alt="Six friends celebrate at sunset. The camera moves in as Youming waves and says, Welcome to my homepage." /></a>
 </p>
-<p align="center"><a href="https://cdn.jsdelivr.net/gh/YoumingYang16/YoumingYang16@main/media/welcome.mp4">▶ Watch with sound</a> · <a href="https://github.com/YoumingYang16/YoumingYang16/blob/main/media/welcome.mp4">MP4 on GitHub</a></p>
+<p align="center"><a href="https://youmingyang16.github.io/YoumingYang16/media/welcome.mp4">▶ Watch with sound</a> · <a href="https://github.com/YoumingYang16/YoumingYang16/blob/main/media/welcome.mp4">MP4 on GitHub</a></p>
 
 <h1 align="center">YoumingYang16</h1>
 
