@@ -5,10 +5,10 @@ const reduced = matchMedia('(prefers-reduced-motion: reduce)');
 function updateControls() {
   const audible = !film.muted && !film.paused && !film.ended;
   sound.classList.toggle('on', audible);
-  sound.querySelector('span').textContent = audible ? '静音播放' : '听英文问候';
+  sound.querySelector('span').textContent = audible ? 'Mute audio' : 'Hear the welcome';
   sound.setAttribute('aria-pressed', String(audible));
   motion.classList.toggle('on', !film.paused);
-  motion.setAttribute('aria-label', film.paused ? '播放场景' : '暂停场景');
+  motion.setAttribute('aria-label', film.paused ? 'Play film' : 'Pause film');
 }
 for(const event of ['play','pause','ended','volumechange']) film.addEventListener(event,updateControls);
 motion.addEventListener('click',()=>{ if(film.paused) { if(film.ended) film.currentTime=0; film.play().catch(updateControls); } else film.pause(); });

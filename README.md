@@ -1,43 +1,28 @@
 <p align="center">
-  <a href="https://github.com/YoumingYang16?tab=repositories"><img src="./assets/profile-cover.webp" width="100%" alt="六人海岸欢迎动画，点击查看全部仓库" /></a>
-</p>
-<p align="center"><a href="https://github.com/YoumingYang16?tab=repositories">查看仓库</a> &nbsp; / &nbsp; <a href="https://youmingyang16.github.io/YoumingYang16/media/welcome.mp4">▶ Watch with sound</a></p>
-
-<h1 align="center">YoumingYang16</h1>
-
-<p align="center">
-  AI 应用 · 交互系统 · 计算研究
+  <a href="https://github.com/YoumingYang16?tab=repositories"><img src="./assets/profile-cover.webp" width="100%" alt="Six friends on the coast at sunset, with Lulu in the corner. Open all repositories." /></a><br />
+  <img src="./assets/portfolio/masthead.webp" width="100%" alt="YoumingYang16 — AI applications, interactive systems, and research." />
 </p>
 
 <p align="center">
-  <a href="#selected-work">Selected work</a> &nbsp; / &nbsp;
-  <a href="#more-to-explore">More to explore</a> &nbsp; / &nbsp;
-  <a href="https://github.com/YoumingYang16?tab=repositories">All repositories</a>
+  <a href="https://github.com/YoumingYang16?tab=repositories"><img src="./assets/portfolio/repositories.webp" width="49%" alt="Browse repositories" /></a>
+  <a href="https://youmingyang16.github.io/YoumingYang16/media/welcome.mp4"><img src="./assets/portfolio/sound.webp" width="49%" alt="Watch with sound" /></a>
 </p>
 
-<br />
+<p align="center">
+  <img src="./assets/portfolio/selected.webp" width="100%" alt="Selected work" /><br />
+  <a href="https://github.com/YoumingYang16/my-project3"><picture><source media="(max-width: 620px)" srcset="https://raw.githubusercontent.com/YoumingYang16/YoumingYang16/main/assets/portfolio/city-mobile.webp" /><img src="./assets/portfolio/city.webp" width="100%" alt="Interactive 3D City. Explore a city in motion with a free camera. C++ and OpenGL." /></picture></a><br />
+  <a href="https://github.com/YoumingYang16/my-project5"><picture><source media="(max-width: 620px)" srcset="https://raw.githubusercontent.com/YoumingYang16/YoumingYang16/main/assets/portfolio/paper-mobile.webp" /><img src="./assets/portfolio/paper.webp" width="100%" alt="PaperLens. Trace science writing back to the paper. Java and AI." /></picture></a><br />
+  <a href="https://github.com/YoumingYang16/my-project2"><picture><source media="(max-width: 620px)" srcset="https://raw.githubusercontent.com/YoumingYang16/YoumingYang16/main/assets/portfolio/climb-mobile.webp" /><img src="./assets/portfolio/climb.webp" width="100%" alt="HoldLight. Find climbing holds and plan a route. TypeScript and computer vision." /></picture></a><br />
+  <a href="https://github.com/YoumingYang16/cockpit-hmi-studio"><picture><source media="(max-width: 620px)" srcset="https://raw.githubusercontent.com/YoumingYang16/YoumingYang16/main/assets/portfolio/cockpit-mobile.webp" /><img src="./assets/portfolio/cockpit.webp" width="100%" alt="Cockpit HMI Studio. Test voice and touch controls in a simulated cockpit. Python and ROS 2." /></picture></a><br />
+  <a href="https://github.com/YoumingYang16/finmath-risk-lab"><picture><source media="(max-width: 620px)" srcset="https://raw.githubusercontent.com/YoumingYang16/YoumingYang16/main/assets/portfolio/risk-mobile.webp" /><img src="./assets/portfolio/risk.webp" width="100%" alt="FinMath Risk Lab. Forecast volatility and study option hedges. Python and finance." /></picture></a><br />
+  <a href="https://github.com/YoumingYang16/ros2-assistive-living"><picture><source media="(max-width: 620px)" srcset="https://raw.githubusercontent.com/YoumingYang16/YoumingYang16/main/assets/portfolio/living-mobile.webp" /><img src="./assets/portfolio/living.webp" width="100%" alt="Assistive Living. Coordinate daily reminders and requests for help. Python and ROS 2." /></picture></a>
+</p>
 
-## Selected work
+<p align="center">
+  <img src="./assets/portfolio/explore.webp" width="100%" alt="More to explore" /><br />
+  <a href="https://github.com/YoumingYang16/my-project1"><img src="./assets/portfolio/route.webp" width="49%" alt="Route Planner" /></a>
+  <a href="https://github.com/YoumingYang16/my-project4"><img src="./assets/portfolio/network.webp" width="49%" alt="Network Lab" /></a><br />
+  <a href="https://github.com/YoumingYang16/sca3-compass"><img src="./assets/portfolio/compass.webp" width="49%" alt="SCA3 Compass" /></a>
+  <a href="https://github.com/YoumingYang16/my-project6"><img src="./assets/portfolio/quiz.webp" width="49%" alt="Command-Line Quiz" /></a>
+</p>
 
-| | Project | Focus |
-| :-- | :-- | :-- |
-| **01** | **[Interactive 3D City](https://github.com/YoumingYang16/my-project3)**<br />可探索的实时城市，包含车辆、角色动画与可移动镜头。 | C++ · OpenGL |
-| **02** | **[PaperLens](https://github.com/YoumingYang16/my-project5)**<br />从论文证据到可核对、可编辑的科普文案与配图候选。 | Java · AI |
-| **03** | **[HoldLight](https://github.com/YoumingYang16/my-project2)**<br />结合视觉识别、路线规划与姿态追踪的攀岩辅助演示。 | TypeScript · Vision |
-| **04** | **[Cockpit HMI Studio](https://github.com/YoumingYang16/cockpit-hmi-studio)**<br />结合中文交互、座舱界面与 ROS 2 的可运行软件实验。 | Python · ROS 2 |
-| **05** | **[FinMath Risk Lab](https://github.com/YoumingYang16/finmath-risk-lab)**<br />围绕波动率预测、期权对冲与风险学习的可复现研究工作台。 | Python · Research |
-| **06** | **[行知 · Assistive Living](https://github.com/YoumingYang16/ros2-assistive-living)**<br />连接生活提醒、人工协助与机器人任务编排的辅助生活原型。 | Python · ROS 2 |
-
-<br />
-
-## More to explore
-
-<details>
-<summary>Algorithms, networks, research & small experiments</summary>
-
-- [Route Planner](https://github.com/YoumingYang16/my-project1) — JavaFX 路线规划、最短路与排序算法实验。
-- [Network Lab](https://github.com/YoumingYang16/my-project4) — Python 文件传输协议与软件定义网络实验。
-- [SCA3 Compass](https://github.com/YoumingYang16/sca3-compass) — 研究证据展示与家庭科普入口。
-- [Command-Line Quiz](https://github.com/YoumingYang16/my-project6) — Java 命令行答题与成绩记录；运行依赖外部课程库。
-
-</details>

@@ -43,10 +43,10 @@
     root.removeAttribute('data-lulu-hint-below');
     root.removeAttribute('data-lulu-hint-hidden');
     root.innerHTML = `
-      <a class="lulu-launcher" href="${REPOSITORIES}" draggable="false" aria-label="查看 Youming 的 GitHub 仓库" aria-describedby="${id}-help">
+      <a class="lulu-launcher" href="${REPOSITORIES}" draggable="false" aria-label="View YoumingYang16's GitHub repositories" aria-describedby="${id}-help">
         <span class="lulu-look"><img class="lulu-image" alt="" draggable="false"><span class="lulu-fallback" hidden aria-hidden="true"><svg viewBox="0 0 80 80" focusable="false"><circle cx="40" cy="42" r="31" fill="#ffc451"/><circle cx="29" cy="36" r="3" fill="#443126"/><circle cx="51" cy="36" r="3" fill="#443126"/><path d="M32 49q8 8 16 0" fill="none" stroke="#443126" stroke-width="3" stroke-linecap="round"/></svg></span></span>
       </a>
-      <span class="lulu-sr-only" id="${id}-help">轻点或按 Enter 打开仓库。可拖动；方向键移动，Shift 加快，Home 回到右下角，Escape 取消当前拖动。</span>
+      <span class="lulu-sr-only" id="${id}-help">Click or press Enter to open the repositories. Drag or use arrow keys to move. Hold Shift for larger steps. Home returns to the bottom-right corner. Escape cancels the current drag.</span>
       <span class="lulu-sr-only" data-lulu-status role="status" aria-live="polite"></span>`;
 
     const launcher = root.querySelector('.lulu-launcher');
@@ -123,7 +123,7 @@
         if (box.maxX - x < 28) x = box.maxX;
         setPosition(x, state.y);
         save();
-        announce('位置已记住。按 Enter 打开仓库。');
+        announce('Position saved. Press Enter to open the repositories.');
       }
     }
 
@@ -171,13 +171,13 @@
         const amount = event.shiftKey ? 36 : 10;
         setPosition(state.x + dx * amount, state.y + dy * amount);
         save();
-        announce('位置已移动。按 Enter 打开仓库。');
+        announce('Position moved. Press Enter to open the repositories.');
       } else if (event.key === 'Home' && !event.ctrlKey && !event.metaKey) {
         event.preventDefault();
         state.ratios = { x: 1, y: 1 };
         restorePosition();
         save();
-        announce('已回到右下角。');
+        announce('Returned to the bottom-right corner.');
       }
     }, { signal });
     document.addEventListener('keydown', event => {
