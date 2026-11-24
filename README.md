@@ -1,7 +1,7 @@
 <p align="center">
-  <a href="https://youmingyang16.github.io/YoumingYang16/"><img src="./media/welcome.webp" width="100%" alt="六人站在夕阳下的海边，镜头推近主角。点击进入可以拖动噜噜的互动主页。" /></a>
+  <a href="https://github.com/YoumingYang16?tab=repositories"><img src="./assets/profile-cover.webp" width="100%" alt="六人海岸欢迎动画，点击查看全部仓库" /></a>
 </p>
-<p align="center"><a href="https://youmingyang16.github.io/YoumingYang16/">进入互动主页 · 拖动噜噜</a> &nbsp; / &nbsp; <a href="https://youmingyang16.github.io/YoumingYang16/media/welcome.mp4">▶ Watch with sound</a></p>
+<p align="center"><a href="https://github.com/YoumingYang16?tab=repositories">查看仓库</a> &nbsp; / &nbsp; <a href="https://youmingyang16.github.io/YoumingYang16/media/welcome.mp4">▶ Watch with sound</a></p>
 
 <h1 align="center">YoumingYang16</h1>
 
