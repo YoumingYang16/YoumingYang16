@@ -1,7 +1,7 @@
 <p align="center">
-  <a href="https://youmingyang16.github.io/YoumingYang16/media/welcome.mp4"><img src="./media/welcome.webp" width="100%" alt="Six friends celebrate at sunset. The camera moves in as Youming waves and says, Welcome to my homepage." /></a>
+  <a href="https://youmingyang16.github.io/YoumingYang16/"><img src="./media/welcome.webp" width="100%" alt="六人站在夕阳下的海边，镜头推近主角。点击进入可以拖动噜噜的互动主页。" /></a>
 </p>
-<p align="center"><a href="https://youmingyang16.github.io/YoumingYang16/media/welcome.mp4">▶ Watch with sound</a> · <a href="https://github.com/YoumingYang16/YoumingYang16/blob/main/media/welcome.mp4">MP4 on GitHub</a></p>
+<p align="center"><a href="https://youmingyang16.github.io/YoumingYang16/">进入互动主页 · 拖动噜噜</a> &nbsp; / &nbsp; <a href="https://youmingyang16.github.io/YoumingYang16/media/welcome.mp4">▶ Watch with sound</a></p>
 
 <h1 align="center">YoumingYang16</h1>
 
