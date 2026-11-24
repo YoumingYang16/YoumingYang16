@@ -1,11 +1,12 @@
 <p align="center">
-  <a href="https://github.com/YoumingYang16?tab=repositories"><img src="./assets/profile-cover.webp" width="100%" alt="Six friends on the coast at sunset, with Lulu in the corner. Open all repositories." /></a><br />
+  <a href="https://github.com/YoumingYang16?tab=repositories"><img src="./media/welcome.webp" width="100%" alt="Six friends on the coast at sunset. Open all repositories." /></a><br />
   <img src="./assets/portfolio/masthead.webp" width="100%" alt="YoumingYang16 — AI applications, interactive systems, and research." />
 </p>
 
 <p align="center">
-  <a href="https://github.com/YoumingYang16?tab=repositories"><img src="./assets/portfolio/repositories.webp" width="49%" alt="Browse repositories" /></a>
-  <a href="https://youmingyang16.github.io/YoumingYang16/media/welcome.mp4"><img src="./assets/portfolio/sound.webp" width="49%" alt="Watch with sound" /></a>
+  <a href="https://github.com/YoumingYang16?tab=repositories"><img src="./assets/lulu-portrait.webp" width="9%" title="Click to view repositories." alt="Lulu, browse repositories" /></a>
+  <a href="https://github.com/YoumingYang16?tab=repositories"><img src="./assets/portfolio/repositories.webp" width="44%" alt="Browse repositories" /></a>
+  <a href="https://youmingyang16.github.io/YoumingYang16/media/welcome.mp4"><img src="./assets/portfolio/sound.webp" width="44%" alt="Watch with sound" /></a>
 </p>
 
 <p align="center">

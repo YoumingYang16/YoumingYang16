@@ -1,6 +1,6 @@
 (() => {
   'use strict';
-  if (window.LuluAssistant?.version === '3.0.0') return;
+  if (window.LuluAssistant?.version === '3.1.0') return;
 
   const REPOSITORIES = 'https://github.com/YoumingYang16?tab=repositories';
   const instances = new WeakMap();
@@ -27,6 +27,9 @@
     let followFrame = 0;
     let followPoint = null;
     let announceTimer = 0;
+    let alphaMask = null;
+    let hoverPoint = null;
+    let hoverFrame = 0;
     let destroyed = false;
 
     try {
@@ -46,15 +49,106 @@
       <a class="lulu-launcher" href="${REPOSITORIES}" draggable="false" aria-label="View YoumingYang16's GitHub repositories" aria-describedby="${id}-help">
         <span class="lulu-look"><img class="lulu-image" alt="" draggable="false"><span class="lulu-fallback" hidden aria-hidden="true"><svg viewBox="0 0 80 80" focusable="false"><circle cx="40" cy="42" r="31" fill="#ffc451"/><circle cx="29" cy="36" r="3" fill="#443126"/><circle cx="51" cy="36" r="3" fill="#443126"/><path d="M32 49q8 8 16 0" fill="none" stroke="#443126" stroke-width="3" stroke-linecap="round"/></svg></span></span>
       </a>
+      <span class="lulu-tooltip" aria-hidden="true" hidden>Click to view repositories.</span>
       <span class="lulu-sr-only" id="${id}-help">Click or press Enter to open the repositories. Drag or use arrow keys to move. Hold Shift for larger steps. Home returns to the bottom-right corner. Escape cancels the current drag.</span>
       <span class="lulu-sr-only" data-lulu-status role="status" aria-live="polite"></span>`;
 
     const launcher = root.querySelector('.lulu-launcher');
+    const look = root.querySelector('.lulu-look');
     const image = root.querySelector('.lulu-image');
+    const tooltip = root.querySelector('.lulu-tooltip');
     const fallback = root.querySelector('.lulu-fallback');
     const status = root.querySelector('[data-lulu-status]');
-    image.addEventListener('error', () => { image.hidden = true; fallback.hidden = false; }, { signal });
+    image.addEventListener('load', readAlphaMask, { signal });
+    image.addEventListener('error', () => { alphaMask = null; clearBodyHover(); image.hidden = true; fallback.hidden = false; }, { signal });
     image.src = asset;
+
+    function readAlphaMask() {
+      try {
+        const canvas = document.createElement('canvas');
+        canvas.width = image.naturalWidth;
+        canvas.height = image.naturalHeight;
+        const context = canvas.getContext('2d', { willReadFrequently: true });
+        context.drawImage(image, 0, 0);
+        const rgba = context.getImageData(0, 0, canvas.width, canvas.height).data;
+        const alpha = new Uint8Array(canvas.width * canvas.height);
+        for (let i = 0; i < alpha.length; i++) alpha[i] = rgba[i * 4 + 3];
+        alphaMask = { width: canvas.width, height: canvas.height, alpha };
+      } catch (_) {
+        // If a future remote image is unreadable, never substitute a rectangular hit area.
+        alphaMask = null;
+        clearBodyHover();
+      }
+    }
+
+    function isPointOnBody(clientX, clientY) {
+      if (!alphaMask || image.hidden) return false;
+      const rect = launcher.getBoundingClientRect();
+      let point = new DOMPoint(clientX - rect.left, clientY - rect.top);
+      // Both nested visual elements fill the launcher. Undo their current transforms,
+      // including breathing and pointer-follow rotation, before sampling source alpha.
+      for (const element of [look, image]) {
+        const style = getComputedStyle(element);
+        const [originX, originY] = style.transformOrigin.split(' ').map(parseFloat);
+        const matrix = new DOMMatrix(style.transform === 'none' ? undefined : style.transform).inverse();
+        point = new DOMPoint(point.x - originX, point.y - originY).matrixTransform(matrix);
+        point.x += originX;
+        point.y += originY;
+      }
+      const scale = Math.min(image.clientWidth / alphaMask.width, image.clientHeight / alphaMask.height);
+      if (!scale) return false;
+      const x = Math.floor((point.x - (image.clientWidth - alphaMask.width * scale) / 2) / scale);
+      const y = Math.floor((point.y - (image.clientHeight - alphaMask.height * scale) / 2) / scale);
+      if (x < 0 || y < 0 || x >= alphaMask.width || y >= alphaMask.height) return false;
+      // Exclude transparent pixels, antialias fringes and the CSS drop shadow.
+      return alphaMask.alpha[y * alphaMask.width + x] >= 128;
+    }
+
+    function clearBodyHover() {
+      hoverPoint = null;
+      cancelAnimationFrame(hoverFrame);
+      hoverFrame = 0;
+      tooltip.hidden = true;
+    }
+
+    function positionTooltip() {
+      const view = viewport();
+      const rect = launcher.getBoundingClientRect();
+      tooltip.style.maxWidth = `${Math.max(0, view.width - 20)}px`;
+      tooltip.hidden = false;
+      const width = tooltip.offsetWidth;
+      const height = tooltip.offsetHeight;
+      const minX = view.left + 10;
+      const minY = view.top + 10;
+      const maxX = view.left + view.width - width - 10;
+      const maxY = view.top + view.height - height - 10;
+      const centeredX = clamp(rect.left + rect.width / 2 - width / 2, minX, maxX);
+      const centeredY = clamp(rect.top + rect.height / 2 - height / 2, minY, maxY);
+      const candidates = [
+        { x: centeredX, y: rect.top - height - 10 },
+        { x: centeredX, y: rect.bottom + 10 },
+        { x: rect.left - width - 10, y: centeredY },
+        { x: rect.right + 10, y: centeredY }
+      ];
+      const placement = candidates.find(p => p.x >= minX && p.y >= minY && p.x <= maxX && p.y <= maxY);
+      if (!placement) { tooltip.hidden = true; return; }
+      tooltip.style.left = `${Math.round(placement.x - rect.left)}px`;
+      tooltip.style.top = `${Math.round(placement.y - rect.top)}px`;
+    }
+
+    function nearVisual(point) {
+      const rect = launcher.getBoundingClientRect();
+      return point.x >= rect.left - 12 && point.x <= rect.right + 12 && point.y >= rect.top - 12 && point.y <= rect.bottom + 12;
+    }
+
+    function refreshBodyHover() {
+      hoverFrame = 0;
+      if (!hoverPoint || pointer || destroyed || document.hidden || !nearVisual(hoverPoint)) { clearBodyHover(); return; }
+      if (isPointOnBody(hoverPoint.x, hoverPoint.y)) positionTooltip();
+      else tooltip.hidden = true;
+      // Recheck a stationary mouse while the body breathes or rotates beneath it.
+      hoverFrame = requestAnimationFrame(refreshBodyHover);
+    }
 
     function viewport() {
       const view = window.visualViewport;
@@ -87,6 +181,7 @@
     }
 
     function setPosition(x, y) {
+      clearBodyHover();
       const box = bounds();
       state.x = clamp(x, box.minX, box.maxX);
       state.y = clamp(y, box.minY, box.maxY);
@@ -181,6 +276,7 @@
       }
     }, { signal });
     document.addEventListener('keydown', event => {
+      clearBodyHover();
       if (event.key === 'Escape' && !event.defaultPrevented && pointer) {
         event.preventDefault();
         finishPointer({ pointerId: pointer.id }, true);
@@ -199,6 +295,16 @@
     window.visualViewport?.addEventListener('resize', scheduleResize, { signal });
     window.visualViewport?.addEventListener('scroll', scheduleResize, { signal });
     document.addEventListener('pointermove', event => {
+      if (event.pointerType !== 'mouse' || event.buttons !== 0 || pointer) { clearBodyHover(); return; }
+      const point = { x: event.clientX, y: event.clientY };
+      if (!nearVisual(point)) { clearBodyHover(); return; }
+      hoverPoint = point;
+      if (!hoverFrame) hoverFrame = requestAnimationFrame(refreshBodyHover);
+    }, { passive: true, signal });
+    document.addEventListener('pointerdown', clearBodyHover, { signal });
+    document.addEventListener('pointerleave', clearBodyHover, { signal });
+    window.addEventListener('blur', clearBodyHover, { signal });
+    document.addEventListener('pointermove', event => {
       if (event.pointerType !== 'mouse' || state.reducedMotion || pointer?.dragging) return;
       followPoint = { x: event.clientX, y: event.clientY };
       if (followFrame) return;
@@ -215,7 +321,7 @@
     }, { passive: true, signal });
     const onMotion = event => { state.reducedMotion = event.matches; if (state.reducedMotion) resetLook(); };
     motion.addEventListener('change', onMotion);
-    document.addEventListener('visibilitychange', () => { if (document.hidden) resetLook(); }, { signal });
+    document.addEventListener('visibilitychange', () => { if (document.hidden) { resetLook(); clearBodyHover(); } }, { signal });
 
     const api = {
       resetPosition: () => { state.ratios = { x: 1, y: 1 }; restorePosition(); save(); },
@@ -227,6 +333,7 @@
         listeners.abort();
         motion.removeEventListener('change', onMotion);
         cancelAnimationFrame(resizeFrame); cancelAnimationFrame(followFrame);
+        clearBodyHover();
         clearTimeout(announceTimer);
         root.innerHTML = '';
         root.classList.remove('lulu-assistant', 'is-ready', 'is-dragging');
@@ -241,7 +348,7 @@
     return api;
   }
 
-  window.LuluAssistant = { version: '3.0.0', mount, get: element => instances.get(typeof element === 'string' ? document.querySelector(element) : element) };
+  window.LuluAssistant = { version: '3.1.0', mount, get: element => instances.get(typeof element === 'string' ? document.querySelector(element) : element) };
   const autoMount = () => document.querySelectorAll('[data-lulu]').forEach(element => mount(element));
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', autoMount, { once: true });
   else autoMount();

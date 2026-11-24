@@ -16,6 +16,7 @@
 .lulu-launcher {
   position: relative;
   display: grid;
+  grid-template: minmax(0, 1fr) / minmax(0, 1fr);
   place-items: center;
   width: 100%;
   height: 100%;
@@ -51,6 +52,22 @@
 .lulu-fallback { display: block; width: 100%; height: 100%; }
 .lulu-fallback svg { width: 100%; height: 100%; filter: drop-shadow(0 5px 8px rgb(24 14 30 / 14%)); }
 .lulu-image[hidden], .lulu-fallback[hidden] { display: none !important; }
+.lulu-tooltip {
+  position: absolute;
+  z-index: 1;
+  width: max-content;
+  padding: 7px 10px;
+  border: 1px solid #d5a18870;
+  border-radius: 10px;
+  background: #342637;
+  box-shadow: 0 5px 18px #160e2466;
+  color: #fff3e5;
+  font: 400 12px/1.45 "Segoe UI", Arial, sans-serif;
+  text-align: center;
+  pointer-events: none;
+  user-select: none;
+}
+.lulu-tooltip[hidden] { display: none !important; }
 .lulu-assistant.is-dragging .lulu-launcher { cursor: grabbing; }
 .lulu-assistant.is-dragging .lulu-image { animation-play-state: paused; }
 .lulu-assistant.is-dragging .lulu-look { transform: rotate(-3deg); transition: none; }
